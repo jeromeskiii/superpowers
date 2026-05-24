@@ -1,0 +1,126 @@
+# Superpowers for Cline
+
+You have Superpowers — a software development methodology built on composable skills.
+
+## The Rule
+
+**Before ANY response or action, check if a Superpowers skill applies.** Even a 1% chance means you should review the relevant skill. If a skill applies to your task, you MUST follow it. This is not optional.
+
+## Instruction Priority
+
+1. **User's explicit instructions** — highest priority
+2. **Superpowers skills** — override default behavior where they conflict
+3. **Default behavior** — lowest priority
+
+## Available Skills
+
+Skills are located in `skills/<skill-name>/SKILL.md`. Before taking action, read the relevant skill file(s) with the `read_file` tool.
+
+### Core Workflow Skills
+- `skills/brainstorming/SKILL.md` — Use BEFORE writing code. Explore ideas, ask questions, present design, get approval.
+- `skills/writing-plans/SKILL.md` — Use AFTER design approval. Break work into bite-sized tasks (2-5 min each). Exact file paths, complete code, verification steps.
+- `skills/executing-plans/SKILL.md` — Use to execute plans task-by-task with checkpoints.
+- `skills/subagent-driven-development/SKILL.md` — Use for autonomous subagent execution with two-stage review.
+
+### Quality Skills
+- `skills/test-driven-development/SKILL.md` — Use when implementing ANY feature or bugfix. RED-GREEN-REFACTOR. Write failing test first. Watch it fail. Minimal code. Watch it pass.
+- `skills/systematic-debugging/SKILL.md` — Use when encountering ANY bug or unexpected behavior. Find root cause before fixing.
+- `skills/verification-before-completion/SKILL.md` — Verify it's actually fixed before declaring done.
+
+### Collaboration Skills
+- `skills/requesting-code-review/SKILL.md` — Review work against plan before proceeding.
+- `skills/receiving-code-review/SKILL.md` — Respond to feedback systematically.
+- `skills/using-git-worktrees/SKILL.md` — Isolate work on new branches with clean baselines.
+- `skills/finishing-a-development-branch/SKILL.md` — Clean completion: verify tests, present options, merge/PR/keep/discard.
+- `skills/dispatching-parallel-agents/SKILL.md` — Concurrent subagent workflows.
+
+### Meta Skills
+- `skills/writing-skills/SKILL.md` — Create new skills following best practices.
+- `skills/using-superpowers/SKILL.md` — Full introduction to the skills system.
+
+### OpenAgent Skills
+- `skills/agent-browser/SKILL.md` — Browser automation via agent-browser CLI.
+- `skills/ai-slop-remover/SKILL.md` — Removes AI-generated code smells from single file.
+- `skills/dev-browser/SKILL.md` — Browser automation with persistent page state.
+- `skills/frontend-ui-ux/SKILL.md` — Designer-turned-developer crafting stunning UI/UX.
+- `skills/git-master/SKILL.md` — Atomic commits, rebase, history search.
+- `skills/playwright-cli/SKILL.md` — Browser automation via playwright-cli.
+- `skills/review-work/SKILL.md` — 5-agent parallel post-implementation review.
+- `skills/github-triage/SKILL.md` — Read-only GitHub issue/PR triage.
+- `skills/pre-publish-review/SKILL.md` — 16-agent pre-publish release gate.
+- `skills/work-with-pr/SKILL.md` — Full PR lifecycle with verification loop.
+
+## Critical Rules
+
+## Critical Rules
+
+### Test-Driven Development (TDD)
+- **NO production code without a failing test first.**
+- Write test → watch it fail → write minimal code → watch it pass → refactor.
+- If you wrote code before the test, **delete it and start over**.
+- Violating the letter is violating the spirit.
+
+### Systematic Debugging
+- **NO fixes without root cause investigation first.**
+- Reproduce → Isolate → Identify → Verify.
+- Symptom fixes are failure.
+
+### Brainstorming Before Code
+- Do NOT write code, scaffold projects, or take implementation action until you have presented a design and the user has approved it.
+- This applies to EVERY project regardless of perceived simplicity.
+- Present design in sections, get approval after each section.
+- Write design doc to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`.
+
+### Writing Plans
+- Each task is one action (2-5 minutes).
+- Exact file paths always.
+- Complete code in every step — show the code.
+- Exact commands with expected output.
+- No placeholders: no "TBD", "TODO", "implement later", "add appropriate error handling".
+- DRY. YAGNI. TDD. Frequent commits.
+
+### Git Worktrees
+- Create isolated workspace on new branch.
+- Run project setup. Verify clean test baseline.
+- Commit frequently.
+
+## Red Flags — STOP and Reassess
+
+- Writing code before design approval
+- Writing code before tests
+- Test passes immediately (proves nothing)
+- "I'll test after" or "tests after achieve same goals"
+- "This is too simple to need a design"
+- "Just this once" skipping TDD
+- Proposing fixes without root cause
+- Keeping code "as reference" instead of deleting
+- Rationalizing shortcuts under time pressure
+
+## Workflow Summary
+
+```
+User asks for feature/change
+    ↓
+Read brainstorming skill → Explore, ask questions, present design
+    ↓
+User approves design
+    ↓
+Write design doc → Commit
+    ↓
+Read writing-plans skill → Create implementation plan
+    ↓
+Read test-driven-development skill → Execute plan with TDD
+    ↓
+Read requesting-code-review skill → Review against plan
+    ↓
+Read finishing-a-development-branch skill → Clean up
+```
+
+## Platform Notes
+
+Cline does not have a native `Skill` tool. Instead:
+- **Read skill files directly** with `read_file` before starting work.
+- **Reference skill names** when announcing which skill you're using (e.g., "I'm using the brainstorming skill to explore this idea").
+- **Follow skill instructions** as if they were loaded via a tool.
+
+For every task, ask: "Which superpowers skill applies here?" Then read it and follow it.
